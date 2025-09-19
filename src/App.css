@@ -29,11 +29,11 @@ body {
   animation: scrollUp 40s linear infinite;
 }
 @media only screen and (max-width: 768px) {
-  .vedio-hero{
+  /* .vedio-hero{
     width:380px;
     height: 380px;
 
-  }
+  } */
   .popup-main{
     margin-top: 55vh;
   }

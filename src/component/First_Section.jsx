@@ -50,8 +50,7 @@ const First_Section = () => {
             loop
             muted
             playsInline
-            className=" 
-               w-[630px] h-[630px] object-cover z-[1] vedio-hero"
+            className="w-[230px] h-[230px] mt-12 md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
           ></video>
         </div>
 
@@ -63,7 +62,7 @@ const First_Section = () => {
             onClick={handleToggleAudio}
           />
 
-          <div className="text-white">
+          <div className="text-white z-[11111111111111111111111111111]">
             <h1 className="text-[8px] md:text-[14px] ">De Onde Vem</h1>
             <h1 className="text-[8px] md:text-[14px] text-[#A6A6A6] ">
               Avila Santo
@@ -114,7 +113,7 @@ const First_Section = () => {
                     <span>V</span>
                     <span>P</span>
                   </button>
-                  <button className="px-1 flex gap-1 items-center justify-center sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
+                  <button className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
                     TEASER
                   </button>
                 </div>
