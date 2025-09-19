@@ -50,7 +50,7 @@ const First_Section = () => {
             loop
             muted
             playsInline
-            className="w-[400px] h-[400px] md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
+            className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
           ></video>
         </div>
 
