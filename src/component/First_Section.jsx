@@ -55,7 +55,7 @@ const First_Section = () => {
           ></video>
         </div>
 
-        <div className="flex items-center gap-4 absolute top-2 left-2 sm:top-3 sm:left-3 md:top-5 md:left-5 ">
+        <div className="flex items-center gap-2 sm:gap-4 absolute top-2 left-2 sm:top-3 sm:left-3 md:top-5 md:left-5 ">
           <img
             src={assets.buffer}
             alt="music buffer"
@@ -64,8 +64,10 @@ const First_Section = () => {
           />
 
           <div className="text-white">
-            <h1 className="text-[14px] ">De Onde Vem</h1>
-            <h1 className="text-[14px] text-[#A6A6A6] ">Avila Santo</h1>
+            <h1 className="text-[8px] md:text-[14px] ">De Onde Vem</h1>
+            <h1 className="text-[8px] md:text-[14px] text-[#A6A6A6] ">
+              Avila Santo
+            </h1>
           </div>
         </div>
 
@@ -95,7 +97,7 @@ const First_Section = () => {
                       BLKNWS
                       <MdKeyboardArrowDown className="ml-1 text-xs sm:text-sm" />
                     </h1>
-                    <p className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold">
+                    <p className="text-[8px] sm:text-[9px] md:text-[10px] font-bold">
                       : TERMS & CONDITIONS
                     </p>
                   </div>
@@ -105,12 +107,20 @@ const First_Section = () => {
                 <div className="border-t flex flex-row items-center w-[85%] text-xs sm:text-sm">
                   <button
                     onClick={() => setPopup(true)}
-                    className="px-1 sm:px-2 py-1.5 sm:py-2 border-r cursor-pointer transition text-center flex-1 "
+                    className="px-1 flex gap-2 md:gap-4 items-center justify-center sm:px-2 py-1.5 sm:py-2 border-r cursor-pointer transition text-center flex-1 "
                   >
-                    R S V P
+                    <span>R</span>
+                    <span>S</span>
+                    <span>V</span>
+                    <span>P</span>
                   </button>
-                  <button className="px-1 sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
-                    Teaser
+                  <button className="px-1 flex gap-1 items-center justify-center sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
+                    <span>T</span>
+                    <span>E</span>
+                    <span>A</span>
+                    <span>S</span>
+                    <span>E</span>
+                    <span>R</span>
                   </button>
                 </div>
               </div>
