@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'VTC Du Bois';
+  src: url('./assets/VTCDuBois-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'VTC Du Bois';
+  src: url('./assets/VTCDuBois-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'VTC Du Bois', sans-serif;
+}
+
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%); 
+  }
+}
+
+.animate-scrollUp {
+  animation: scrollUp 40s linear infinite;
+}
+@media only screen and (max-width: 768px) {
+  .vedio-hero{
+    width:380px;
+    height: 380px;
+
+  }
+  .popup-main{
+    margin-top: 0vh;
+  }
+  .menu-bg-img{
+    height: 540px;
+  }
+  .rsvp-main-div{
+    margin-top: -8px;
+    h1{
+      margin-left: -40px
+    }
+   
+  }
+  .popup-form{
+    margin-top: 0px;
+   
+  }
+}
+@media only screen and (max-width: 426px) {
+  .popup-main{
+    margin-top: 35vh;
+  }
+  .menu-bg-img{
+    height: 360px;
+  }
+  .rsvp-main-div{
+    margin-top: 128px;
+    h1{
+      margin-left: -40px
+    }
+    p{
+      margin-top: -10px;
+    }
+  }
+  .popup-form{
+    margin-top: -1.4vh;
+    height: 400px !important;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .popup-main{
+    margin-top: 35vh;
+  }
+  .menu-bg-img{
+    height: 350px;
+  }
+  .rsvp-main-div{
+    margin-top: 128px;
+    h1{
+      margin-left: -40px
+    }
+    p{
+      margin-top: -10px;
+    }
+  }
+  .popup-form{
+    margin-top: -1.4vh;
+  }
+}
