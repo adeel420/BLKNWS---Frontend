@@ -70,7 +70,7 @@ const First_Section = () => {
         </div>
 
         {/* Ticket Style Box */}
-        <div className="ticket-box absolute top-2 right-[-5px] sm:top-3 sm:right-3 md:top-5 md:right-5 z-10">
+        <div className="ticket-box absolute top-2 right-[-12px] sm:top-3 sm:right-0 md:top-5 md:right-[-30px] z-10">
           {/* Ticket container */}
           <div className="relative">
             {/* Ticket background */}
