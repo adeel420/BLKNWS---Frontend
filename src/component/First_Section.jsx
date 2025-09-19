@@ -39,7 +39,7 @@ const First_Section = () => {
       style={{ zIndex: "-111111111111111111111111111111111111111111111111" }}
       onClick={handleStartAudio}
     >
-      <div className="relative w-full h-[max-content] md:h-[100vh] overflow-hidden ">
+      <div className="relative w-full h-[100vh] md:h-[100vh] overflow-hidden ">
         <audio ref={audioRef} src={assets.audio} loop autoPlay />
 
         {/* Background Video */}
@@ -50,7 +50,7 @@ const First_Section = () => {
             loop
             muted
             playsInline
-            className="w-[230px] h-[230px] mt-12 md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
+            className="w-[230px] h-[230px] md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
           ></video>
         </div>
 

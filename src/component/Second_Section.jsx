@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 const Second_Section = () => {
   return (
-    <div className="bg-black text-white pt-9 md:pt-12 flex flex-col items-center px-4 sm:px-6 lg:px-12 ">
+    <div className="bg-black text-white mt-[-80px] md:mt-[0px] md:pt-12 flex flex-col items-center px-4 sm:px-6 lg:px-12 ">
       {/* Logo */}
       <img
         src={assets.textLogo}
