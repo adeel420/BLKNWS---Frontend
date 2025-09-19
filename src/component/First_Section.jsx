@@ -59,7 +59,7 @@ const First_Section = () => {
           <img
             src={assets.buffer}
             alt="music buffer"
-            className="h-6 sm:h-7 md:h-9 object-contain"
+            className="h-6 sm:h-7 md:h-9 object-contain cursor-pointer"
             onClick={handleToggleAudio}
           />
 
