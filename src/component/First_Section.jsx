@@ -115,12 +115,7 @@ const First_Section = () => {
                     <span>P</span>
                   </button>
                   <button className="px-1 flex gap-1 items-center justify-center sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
-                    <span>T</span>
-                    <span>E</span>
-                    <span>A</span>
-                    <span>S</span>
-                    <span>E</span>
-                    <span>R</span>
+                    TEASER
                   </button>
                 </div>
               </div>
