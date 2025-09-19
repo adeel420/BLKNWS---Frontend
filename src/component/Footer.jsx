@@ -58,7 +58,7 @@ const Footer = () => {
         </a>
       </div>
       {/* Popup */}
-      {popup && <Popup setPopup={setPopup} />}
+      <div className="text-black">{popup && <Popup setPopup={setPopup} />}</div>
     </footer>
   );
 };
