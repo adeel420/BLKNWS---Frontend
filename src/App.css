@@ -35,10 +35,10 @@ body {
 
   }
   .popup-main{
-    margin-top: 0vh;
+    margin-top: 55vh;
   }
   .menu-bg-img{
-    height: 540px;
+    height: 360px;
   }
   .rsvp-main-div{
     margin-top: -8px;
@@ -48,19 +48,19 @@ body {
    
   }
   .popup-form{
-    margin-top: 0px;
+    margin-top: -88px;
    
   }
 }
-@media only screen and (max-width: 426px) {
+@media only screen and (max-width: 390px) {
   .popup-main{
-    margin-top: 35vh;
+    margin-top: 55vh;
   }
   .menu-bg-img{
     height: 360px;
   }
   .rsvp-main-div{
-    margin-top: 128px;
+    margin-top: -8px;
     h1{
       margin-left: -40px
     }
@@ -69,27 +69,6 @@ body {
     }
   }
   .popup-form{
-    margin-top: -1.4vh;
-    height: 400px !important;
-  }
-}
-@media only screen and (max-width: 390px) {
-  .popup-main{
-    margin-top: 35vh;
-  }
-  .menu-bg-img{
-    height: 350px;
-  }
-  .rsvp-main-div{
-    margin-top: 128px;
-    h1{
-      margin-left: -40px
-    }
-    p{
-      margin-top: -10px;
-    }
-  }
-  .popup-form{
-    margin-top: -1.4vh;
+    margin-top: -1.7vh;
   }
 }

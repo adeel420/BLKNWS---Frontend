@@ -39,7 +39,7 @@ const First_Section = () => {
       style={{ zIndex: "-111111111111111111111111111111111111111111111111" }}
       onClick={handleStartAudio}
     >
-      <div className="relative w-full h-[100vh] overflow-hidden ">
+      <div className="relative w-full h-[max-content] md:h-[100vh] overflow-hidden ">
         <audio ref={audioRef} src={assets.audio} loop autoPlay />
 
         {/* Background Video */}
