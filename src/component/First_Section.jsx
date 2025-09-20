@@ -57,7 +57,7 @@ const First_Section = () => {
             className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
           ></video>
           <div
-            className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] absolute object-cover z-[2] vedio-hero"
+            className="w-[380px] h-[380px] rounded-full md:w-[630px] md:h-[630px] absolute object-cover z-[2] vedio-hero"
             onClick={handleToggleAudio}
           ></div>
         </div>
