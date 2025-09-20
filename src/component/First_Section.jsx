@@ -4,11 +4,13 @@ import { MdKeyboardArrowDown, MdVolumeOff, MdVolumeUp } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "./popup/Popup";
 import backPopup from "../assets/images/back-popup.png"; // relative path correct
+import CursorText from "./CursorText";
 
 const First_Section = () => {
   const [popup, setPopup] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const sectionRef = useRef(null);
   const [isHoveringBuffer, setIsHoveringBuffer] = useState(false);
 
   const audioRef = useRef(null);
@@ -37,6 +39,7 @@ const First_Section = () => {
   return (
     <div
       className="bg-[black] "
+      ref={sectionRef}
       style={{ zIndex: "-111111111111111111111111111111111111111111111111" }}
       onClick={handleStartAudio}
     >
@@ -146,6 +149,12 @@ const First_Section = () => {
 
         {/* Popup */}
         {popup && <Popup setPopup={setPopup} />}
+        <div className="bg-black relative">
+          {/* aapka purana section code yahan */}
+
+          {/* CursorText sirf is section ke andar visible hoga */}
+          <CursorText isMuted={isMuted} sectionRef={sectionRef} />
+        </div>
       </div>
     </div>
   );
