@@ -47,7 +47,7 @@ export default function CursorText({ isMuted, sectionRef }) {
         borderRadius: "4px",
       }}
     >
-      {isMuted ? "Mute" : "Unmute"}
+      {isMuted ? "Unmute" : "Mute"}
     </div>
   );
 }

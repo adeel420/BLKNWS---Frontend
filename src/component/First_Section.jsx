@@ -39,7 +39,6 @@ const First_Section = () => {
   return (
     <div
       className="bg-[black] "
-      ref={sectionRef}
       style={{ zIndex: "-111111111111111111111111111111111111111111111111" }}
       onClick={handleStartAudio}
     >
@@ -59,6 +58,7 @@ const First_Section = () => {
           <div
             className="w-[380px] h-[380px] rounded-full md:w-[630px] md:h-[630px] absolute object-cover z-[2] vedio-hero"
             onClick={handleToggleAudio}
+            ref={sectionRef}
           ></div>
         </div>
 
