@@ -50,7 +50,7 @@ const Popup = ({ setPopup }) => {
   return (
     <div
       className=" popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-50"
-      onClick={() => setPopup(false)}
+      onClick={() => setPopup(false)} // backdrop click
     >
       <div
         className="w-full max-w-sm sm:max-w-lg md:max-w-2xl relative p-1 sm:p-6 md:p-8 
@@ -80,6 +80,12 @@ const Popup = ({ setPopup }) => {
             >
               R S V P
             </h1>
+            <button
+              className="absolute right-14 cursor-pointer md:hidden top-0 "
+              onClick={() => setPopup(false)}
+            >
+              x
+            </button>
             <p
               className="text-[12px] sm:text-sm md:text-base font-regular -ml-9.5  "
               style={{ fontWeight: 400, fontSize: "clamp(12px, 3.5vw, 14px)" }}
