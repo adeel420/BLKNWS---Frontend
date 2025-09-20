@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { assets } from "../assets/assets";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdVolumeOff, MdVolumeUp } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "./popup/Popup";
 import backPopup from "../assets/images/back-popup.png"; // relative path correct
@@ -9,6 +9,7 @@ const First_Section = () => {
   const [popup, setPopup] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isHoveringBuffer, setIsHoveringBuffer] = useState(false);
 
   const audioRef = useRef(null);
 
@@ -55,12 +56,33 @@ const First_Section = () => {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4 absolute top-2 left-2 sm:top-3 sm:left-3 md:top-5 md:left-5 ">
-          <img
-            src={assets.buffer}
-            alt="music buffer"
-            className="h-6 sm:h-7 md:h-9 object-contain cursor-pointer"
+          {/* Buffer/Audio Control Container */}
+          <div
+            className="relative cursor-pointer"
+            onMouseEnter={() => setIsHoveringBuffer(true)}
+            onMouseLeave={() => setIsHoveringBuffer(false)}
             onClick={handleToggleAudio}
-          />
+          >
+            {/* Buffer Image */}
+            <img
+              src={assets.buffer}
+              alt="music buffer"
+              className={`h-6 sm:h-7 md:h-9 object-contain transition-opacity duration-200 ${
+                isHoveringBuffer ? "opacity-0" : "opacity-100"
+              }`}
+            />
+
+            {/* Hover Icon Overlay */}
+            {isHoveringBuffer && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                {isMuted ? (
+                  <MdVolumeUp className="text-white text-lg sm:text-xl md:text-2xl" />
+                ) : (
+                  <MdVolumeOff className="text-white text-lg sm:text-xl md:text-2xl" />
+                )}
+              </div>
+            )}
+          </div>
 
           <div className="text-white z-[11111111111111111111111111111]">
             <h1 className="text-[8px] md:text-[14px] ">De Onde Vem</h1>
