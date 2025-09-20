@@ -56,9 +56,13 @@ const First_Section = () => {
             playsInline
             className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] object-cover z-[1] vedio-hero"
           ></video>
+          <div
+            className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] absolute object-cover z-[2] vedio-hero"
+            onClick={handleToggleAudio}
+          ></div>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-4 absolute top-2 left-2 sm:top-3 sm:left-3 md:top-5 md:left-5 ">
+        <div className="flex items-center gap-2 bg-transparent sm:gap-4 absolute top-2 left-2 sm:top-3 sm:left-3 md:top-5 md:left-5 ">
           {/* Buffer/Audio Control Container */}
           <div
             className="relative cursor-pointer"
