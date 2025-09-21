@@ -32,6 +32,7 @@ export default function CursorText({ isMuted, sectionRef }) {
 
   return (
     <div
+      className="hidden md:block "
       style={{
         position: "fixed",
         top: pos.y,
