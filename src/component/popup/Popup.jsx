@@ -9,6 +9,7 @@ const Popup = ({ setPopup }) => {
     EarlyAccess: true,
     FirstInvites: true,
     Updates: true,
+    Policy: false,
   });
 
   const handleOptionChange = (name) => {
@@ -24,7 +25,7 @@ const Popup = ({ setPopup }) => {
       City: e.target.city.value,
       ...options, // include checkbox options
     };
-
+    // https://blknws-backend.onrender.com/api/submit-form
     try {
       const res = await fetch(
         "https://blknws-backend.onrender.com/api/submit-form",
@@ -34,6 +35,7 @@ const Popup = ({ setPopup }) => {
           body: JSON.stringify(formData),
         }
       );
+      console.log(res);
 
       if (!res.ok) throw new Error("Submission failed");
 
@@ -215,6 +217,21 @@ const Popup = ({ setPopup }) => {
 
             <div className=" w-full space-y-1.5 sm:space-y-2 md:space-y-4  mt-3 sm:mt-6">
               {/* Option 1 */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <input
+                  type="checkbox"
+                  color="black"
+                  className="h-[16px] w-[16px] sm:h-[16px] sm:w-[16px] "
+                  checked={options.Policy}
+                  onChange={() => handleOptionChange("Policy")}
+                />
+                <label className="text-xs w-[80%] sm:text-sm md:text-sm font-normal">
+                  I agree to receive marketing emails and understand that my
+                  data may be used for remarketing and profiling, as described
+                  in the Privacy Policy.
+                </label>
+              </div>
+
               <div className="flex items-center gap-2 sm:gap-3">
                 <DiagonalBox
                   initial={true}

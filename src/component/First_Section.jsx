@@ -72,7 +72,7 @@ const First_Section = () => {
           >
             {/* Buffer Image */}
             <img
-              src={assets.buffer}
+              src={isMuted ? `${assets.buffer1}` : `${assets.buffer}`}
               alt="music buffer"
               className={`h-6 sm:h-7 md:h-9 object-contain transition-opacity duration-200 ${
                 isHoveringBuffer ? "opacity-0" : "opacity-100"

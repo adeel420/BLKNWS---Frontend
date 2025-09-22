@@ -14,6 +14,7 @@ import google from "./images/google.png";
 import apple from "./images/apple.png";
 import ticket from "./images/ticket.svg";
 import buffer from "./images/buffer.gif";
+import buffer1 from "./images/buffer1.jpeg";
 
 export const assets = {
   video,
@@ -32,4 +33,5 @@ export const assets = {
   apple,
   ticket,
   buffer,
+  buffer1,
 };
