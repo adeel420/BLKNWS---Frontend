@@ -13,7 +13,7 @@ import hamburger from "./images/hamburger.jpeg";
 import google from "./images/google.png";
 import apple from "./images/apple.png";
 import ticket from "./images/ticket.svg";
-import buffer from "./images/buffer.svg";
+import buffer from "./images/buffer.gif";
 
 export const assets = {
   video,
