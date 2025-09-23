@@ -83,7 +83,7 @@ const Popup = ({ setPopup }) => {
               R S V P
             </h1>
             <button
-              className="absolute right-14 cursor-pointer md:hidden top-0 "
+              className="absolute right-12 cursor-pointer md:hidden top-0 "
               onClick={() => setPopup(false)}
             >
               x
