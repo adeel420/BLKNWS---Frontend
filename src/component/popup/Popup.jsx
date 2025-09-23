@@ -62,14 +62,14 @@ const Popup = ({ setPopup }) => {
       >
         <img
           src={assets.backSvg}
-          className=" menu-bg-img relative w-100%   object-cover sm:object-contain md:w-full md:h-100%"
+          className=" menu-bg-img relative w-100% object-cover sm:object-contain md:w-full md:h-100%"
         />
         <div
           className="absolute left-[5%] sm:left-[10%] md:left-[27%] 
                         top-4 sm:top-12 
                         w-[100%] sm:w-auto 
                         h-[calc(50%-2rem)] sm:h-auto
-                        flex flex-col justify-center overflow-y-auto sm:justify-start md:w-[500px] md:-ml-11  "
+                        flex flex-col justify-center sm:justify-start md:w-[500px] md:-ml-11  "
         >
           <div className="text-center mb-3 sm:mb-0 md:-ml-14 rsvp-main-div">
             <h1

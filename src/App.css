@@ -53,19 +53,17 @@ body {
 }
 @media only screen and (max-width: 541px) {
   .menu-bg-img{
-    height: 430px;
+    height: 440px;
   }
   .rsvp-main-div{
-    margin-top: -2px;
-    h1{
-      margin-left: 90px
-    }
+    margin-top: 70px;
     p{
-      margin-top: 0px;
+      margin-top: -10px;
     }
   }
   .popup-form{
     margin-top: 0vh;
+    
   }
 }
 @media only screen and (max-width: 430px) {
