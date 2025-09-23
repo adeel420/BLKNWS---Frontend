@@ -97,7 +97,7 @@ const Popup = ({ setPopup }) => {
           </div>
 
           <form
-            className=" popup-form space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-center  md:ml-1 "
+            className=" popup-form space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-center z-[40]  md:ml-1 "
             onSubmit={handleSubmit}
           >
             <input
@@ -227,8 +227,7 @@ const Popup = ({ setPopup }) => {
                 />
                 <label className="text-xs w-[80%] sm:text-sm md:text-sm font-normal">
                   I agree to receive marketing emails and understand that my
-                  data may be used for remarketing and profiling, as described
-                  in the Privacy Policy.
+                  data may be used for remarketing and profiling
                 </label>
               </div>
 
