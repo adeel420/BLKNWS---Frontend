@@ -71,7 +71,7 @@ const Popup = ({ setPopup }) => {
                         h-[calc(50%-2rem)] sm:h-auto
                         flex flex-col justify-center overflow-y-auto sm:justify-start md:w-[500px] md:-ml-11  "
         >
-          <div className="text-center mb-3 sm:mb-6 md:-ml-14 overflow-visible rsvp-main-div">
+          <div className="text-center mb-3 sm:mb-0 md:-ml-14 rsvp-main-div">
             <h1
               className="text-lg md:-ml-8 sm:text-xl md:text-3xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-gray-800 mb-2 sm:mb-4  item-center justify-center flex mx-auto"
               style={{
@@ -97,7 +97,7 @@ const Popup = ({ setPopup }) => {
           </div>
 
           <form
-            className=" popup-form space-y-2.5 sm:space-y-4 flex-1 flex flex-col justify-center z-[40]  md:ml-1 "
+            className=" popup-form space-y-2.5 sm:space-y-2 flex-1 flex flex-col justify-center z-[40]  md:ml-1 "
             onSubmit={handleSubmit}
           >
             <input
