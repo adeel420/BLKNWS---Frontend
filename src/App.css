@@ -56,7 +56,10 @@ body {
     height: 440px;
   }
   .rsvp-main-div{
-    margin-top: 140px;
+    margin-top: 40px;
+    h1{
+      margin-top: 20px;
+    }
     p{
       margin-top: -10px;
     }
@@ -103,5 +106,20 @@ body {
     margin-top: -1.7vh;
   }
 }
-
-
+@media only screen and (max-width: 360px) {
+  .popup-main{
+    margin-top: 55vh;
+  }
+  .menu-bg-img{
+    height: 410px;
+  }
+  .rsvp-main-div{
+    margin-top: 30px;
+    h1{
+      margin-left: -40px
+    }
+    p{
+      margin-top: -10px;
+    }
+  }
+}
