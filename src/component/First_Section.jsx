@@ -5,10 +5,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "./popup/Popup";
 import backPopup from "../assets/images/back-popup.png"; // relative path correct
 import CursorText from "./CursorText";
+import { useNavigate } from "react-router-dom";
 
 const First_Section = () => {
   const [popup, setPopup] = useState(false);
   const [audioStarted, setAudioStarted] = useState(false);
+  const navigate = useNavigate();
   const [isMuted, setIsMuted] = useState(false);
   const sectionRef = useRef(null);
   const [isHoveringBuffer, setIsHoveringBuffer] = useState(false);
@@ -142,9 +144,12 @@ const First_Section = () => {
                     <span>V</span>
                     <span>P</span>
                   </button>
-                  <button className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
+                  <a
+                    href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+                    className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 "
+                  >
                     TEASER
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -19,9 +19,12 @@ const Footer = () => {
           <span>V</span>
           <span>P</span>
         </button>
-        <button className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 ">
+        <a
+          href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+          className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 "
+        >
           T E A S E R
-        </button>
+        </a>
       </div>
       {/* Copyright Text */}
       <p className="text-center text-xs sm:text-sm md:text-base">
@@ -42,12 +45,15 @@ const Footer = () => {
           <FaTiktok />
         </a>
         <a
-          href="https://www.instagram.com/richspirit___________/"
+          href="https://www.instagram.com/richspiritstudio/"
           className="text-3xl cursor-pointer"
         >
           <FaInstagram />
         </a>
-        <a href="" className="text-3xl cursor-pointer">
+        <a
+          href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+          className="text-3xl cursor-pointer"
+        >
           <FaYoutube />
         </a>
         <a
