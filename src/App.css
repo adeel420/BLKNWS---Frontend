@@ -106,6 +106,26 @@ body {
     margin-top: -1.7vh;
   }
 }
+@media only screen and (max-width: 376px) {
+  .popup-main{
+    margin-top: 55vh;
+  }
+  .menu-bg-img{
+    height: 410px;
+  }
+  .rsvp-main-div{
+    margin-top: 58px;
+    h1{
+      margin-left: -20px
+    }
+    p{
+      margin-top: -10px;
+    }
+  }
+  .popup-form{
+    margin-top: -1.7vh;
+  }
+}
 @media only screen and (max-width: 360px) {
   .popup-main{
     margin-top: 55vh;
