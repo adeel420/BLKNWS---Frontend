@@ -224,7 +224,7 @@ const Third_Section = () => {
           {/* Mobile: Auto-scroll + manual scroll */}
           <div
             ref={scrollRef}
-            className="flex md:hidden flex-col overflow-y-auto h-full px-4"
+            className="flex md:hidden flex-col overflow-y-auto h-full px-4 max-w-[90%] mx-auto"
           >
             {credits}
             {credits}

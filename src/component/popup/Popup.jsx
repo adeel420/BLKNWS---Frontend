@@ -88,12 +88,12 @@ const Popup = ({ setPopup }) => {
             >
               x
             </button>
-            <p
+            {/* <p
               className="text-[12px] sm:text-sm md:text-base font-regular -ml-9.5  "
               style={{ fontWeight: 400, fontSize: "clamp(12px, 3.5vw, 14px)" }}
             >
               JOIN THE MOVEMENT
-            </p>
+            </p> */}
           </div>
 
           <form
