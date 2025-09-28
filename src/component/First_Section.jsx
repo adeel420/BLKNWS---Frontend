@@ -146,6 +146,7 @@ const First_Section = () => {
                   </button>
                   <a
                     href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+                    target="_blank"
                     className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 "
                   >
                     TEASER
@@ -162,7 +163,7 @@ const First_Section = () => {
           {/* aapka purana section code yahan */}
 
           {/* CursorText sirf is section ke andar visible hoga */}
-          <CursorText isMuted={isMuted} sectionRef={sectionRef} />
+          {!popup && <CursorText isMuted={isMuted} sectionRef={sectionRef} />}
         </div>
       </div>
     </div>

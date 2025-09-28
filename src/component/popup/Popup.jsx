@@ -51,13 +51,13 @@ const Popup = ({ setPopup }) => {
 
   return (
     <div
-      className=" popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-50"
+      className=" popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-40"
       onClick={() => setPopup(false)} // backdrop click
     >
       <div
         className="w-full max-w-sm sm:max-w-lg md:max-w-2xl relative p-1 sm:p-6 md:p-8 
                    my-2 sm:my-8 
-                   h-[96vh] sm:h-auto sm:max-h-screen "
+                   h-[96vh] sm:h-auto sm:max-h-screen z-40 "
         onClick={(e) => e.stopPropagation()}
       >
         <img

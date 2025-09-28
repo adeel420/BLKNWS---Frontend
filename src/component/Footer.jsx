@@ -40,24 +40,28 @@ const Footer = () => {
       <div className="text-white flex items-center gap-6">
         <a
           href="https://www.tiktok.com/@richspirit____?_t=ZP-8zmho9NNJLb&_r=1"
+          target="_blank"
           className="text-3xl cursor-pointer "
         >
           <FaTiktok />
         </a>
         <a
           href="https://www.instagram.com/richspiritstudio/"
+          target="_blank"
           className="text-3xl cursor-pointer"
         >
           <FaInstagram />
         </a>
         <a
           href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+          target="_blank"
           className="text-3xl cursor-pointer"
         >
           <FaYoutube />
         </a>
         <a
           href="https://x.com/richspiritfilm"
+          target="_blank"
           className="text-3xl cursor-pointer"
         >
           <FaXTwitter />
