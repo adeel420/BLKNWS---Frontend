@@ -95,7 +95,7 @@ body {
     height: 390px;
   }
   .rsvp-main-div{
-    margin-top: -15px;
+    margin-top: -25px;
     h1{
       margin-left: -40px
     }
@@ -106,10 +106,10 @@ body {
 }
 @media only screen and (max-width: 403px){
   .menu-bg-img{
-    height: 390px;
+    height: 380px;
   }
    .rsvp-main-div{
-    margin-top: 20px;
+    margin-top: 0px;
     h1{
       margin-left: -40px
     }
