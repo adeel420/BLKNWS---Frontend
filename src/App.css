@@ -74,7 +74,7 @@ body {
     height: 400px;
   }
   .rsvp-main-div{
-    margin-top: 15px;
+    margin-top: -5px;
     h1{
       margin-top: 20px;
     }
@@ -83,19 +83,19 @@ body {
     }
   }
   .popup-form{
-    margin-top: 0vh;
+    margin-top: -20px;
     
   }
 }
 @media only screen and (max-width: 430px) {
 .popup-form{
-    margin-top: 0vh;
+    margin-top: -10px;
   }
   .menu-bg-img{
     height: 400px;
   }
   .rsvp-main-div{
-    margin-top: 25px;
+    margin-top: -5px;
     h1{
       margin-left: -40px
     }
@@ -146,7 +146,7 @@ body {
     height: 390px;
   }
   .rsvp-main-div{
-    margin-top: 68px;
+    margin-top: 38px;
     h1{
       margin-left: -20px
     }
