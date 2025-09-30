@@ -8,7 +8,7 @@ import CursorText from "./CursorText";
 import { useNavigate } from "react-router-dom";
 
 const First_Section = () => {
-  const [popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState(true);
   const [audioStarted, setAudioStarted] = useState(false);
   const navigate = useNavigate();
   const [isMuted, setIsMuted] = useState(false);
