@@ -280,7 +280,7 @@ const Popup = ({ setPopup }) => {
             <div className="pt-0 sm:pt-0 md:pt-6 w-full flex items-center justify-center">
               <button
                 type="submit"
-                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-9 sm:h-9 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px] "
+                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-7 sm:h-7 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px] "
                 style={{ fontWeight: 400, fontSize: "clamp(16px, 4vw, 24px)" }}
               >
                 SUBMIT
