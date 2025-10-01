@@ -118,7 +118,7 @@ const Popup = ({ setPopup }) => {
               name="city"
               defaultValue=""
               style={{ fontWeight: 400, fontSize: "13px" }}
-              className="w-[90%] sm:w-[38%] h-10 sm:h-11 md:h-11 md:w-[400px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer appearance-none"
+              className="sel w-[90%] sm:w-[38%] h-10 sm:h-11 md:h-11 md:w-[400px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer appearance-none"
               required
             >
               <option value="" disabled>
