@@ -15,6 +15,7 @@ import apple from "./images/apple.png";
 import ticket from "./images/ticket.svg";
 import buffer from "./images/buffer.png";
 import buffer1 from "./images/buffer1.jpeg";
+import mobileTicket from "./images/mobile-ticket.svg";
 
 export const assets = {
   video,
@@ -34,4 +35,5 @@ export const assets = {
   ticket,
   buffer,
   buffer1,
+  mobileTicket,
 };

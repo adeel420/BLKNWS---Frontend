@@ -62,7 +62,11 @@ const Popup = ({ setPopup }) => {
       >
         <img
           src={assets.backSvg}
-          className=" menu-bg-img relative w-100% object-cover sm:object-contain md:w-full md:h-100%"
+          className="hidden md:block menu-bg-img relative w-100% object-cover sm:object-contain md:w-full md:h-100%"
+        />
+        <img
+          src={assets.backSvg}
+          className="block md:hidden menu-bg-img relative "
         />
         <div
           className="absolute left-[5%] sm:left-[10%] md:left-[27%] 
@@ -83,7 +87,7 @@ const Popup = ({ setPopup }) => {
               R S V P
             </h1>
             <button
-              className="absolute right-12 cursor-pointer md:hidden top-0 "
+              className="absolute right-12 cursor-pointer md:hidden top-3 md:top-0 "
               onClick={() => setPopup(false)}
             >
               x
@@ -273,10 +277,10 @@ const Popup = ({ setPopup }) => {
               </div>
             </div>
 
-            <div className="pt-3 sm:pt-6 w-full flex items-center justify-center">
+            <div className="pt-0 sm:pt-0 md:pt-6 w-full flex items-center justify-center">
               <button
                 type="submit"
-                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-10 sm:h-11 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px] "
+                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-9 sm:h-9 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px] "
                 style={{ fontWeight: 400, fontSize: "clamp(16px, 4vw, 24px)" }}
               >
                 SUBMIT
