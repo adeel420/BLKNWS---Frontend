@@ -87,17 +87,11 @@ const Popup = ({ setPopup }) => {
               R S V P
             </h1>
             <button
-              className="absolute right-12 cursor-pointer md:hidden top-3 md:top-0 "
+              className="absolute right-12 cursor-pointer md:hidden top-5 md:top-0 "
               onClick={() => setPopup(false)}
             >
               x
             </button>
-            {/* <p
-              className="text-[12px] sm:text-sm md:text-base font-regular -ml-9.5  "
-              style={{ fontWeight: 400, fontSize: "clamp(12px, 3.5vw, 14px)" }}
-            >
-              JOIN THE MOVEMENT
-            </p> */}
           </div>
 
           <form
