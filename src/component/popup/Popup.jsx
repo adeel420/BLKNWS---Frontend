@@ -242,12 +242,6 @@ const Popup = ({ setPopup }) => {
             >
               R S V P
             </h1>
-            <button
-              className="absolute right-12 cursor-pointer md:hidden top-5 md:top-0 "
-              onClick={() => setPopup(false)}
-            >
-              x
-            </button>
           </div>
 
           <form
