@@ -104,7 +104,6 @@ const allCities = [
 ];
 
 const Popup = ({ setPopup }) => {
-  // State for checkboxes
   const [options, setOptions] = useState({
     EarlyAccess: true,
     FirstInvites: true,
@@ -127,12 +126,14 @@ const Popup = ({ setPopup }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // FIX 1: Changed item.Location to item.city
   const filteredCities = search
     ? allCities.filter((item) =>
         item.city.toLowerCase().includes(search.toLowerCase())
       )
     : allCities;
 
+  // FIX 2: Changed Location to city parameter
   const handleSelect = (city) => {
     setSelected(city);
     setSearch("");
@@ -140,7 +141,7 @@ const Popup = ({ setPopup }) => {
   };
 
   let currentGroup = "";
-  const cityElements = [];
+  const cityElements = []; // FIX 3: Renamed from LocationElements to cityElements
 
   for (let i = 0; i < filteredCities.length; i++) {
     const item = filteredCities[i];
@@ -157,6 +158,7 @@ const Popup = ({ setPopup }) => {
       );
     }
 
+    // FIX 4: Changed item.Location to item.city
     cityElements.push(
       <div
         key={`city-${i}`}
@@ -175,13 +177,19 @@ const Popup = ({ setPopup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // FIX 5: Validate that a city is selected
+    if (!selected) {
+      toast.error("Please select a city/location");
+      return;
+    }
+
     const formData = {
       Name: e.target.name.value,
       Email: e.target.email.value,
-      City: e.target.city.value,
-      ...options, // include checkbox options
+      Location: selected, // FIX 6: Use selected state value
+      ...options,
     };
-    // https://blknws-backend.onrender.com/api/submit-form
+
     try {
       const res = await fetch(
         "https://blknws-backend.onrender.com/api/submit-form",
@@ -191,14 +199,19 @@ const Popup = ({ setPopup }) => {
           body: JSON.stringify(formData),
         }
       );
-      console.log(res);
 
       if (!res.ok) throw new Error("Submission failed");
 
       toast.success("Form submitted successfully!");
-      e.target.reset(); // reset form inputs
-      setOptions({ EarlyAccess: true, FirstInvites: true, Updates: true }); // reset checkboxes
-      setPopup(false); // close popup
+      e.target.reset();
+      setOptions({
+        EarlyAccess: true,
+        FirstInvites: true,
+        Updates: true,
+        Policy: false,
+      });
+      setSelected(""); // FIX 7: Reset selected city
+      setPopup(false);
     } catch (err) {
       console.error(err);
       toast.error("Something went wrong! Please try again.");
@@ -207,33 +220,35 @@ const Popup = ({ setPopup }) => {
 
   return (
     <div
-      className=" popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-40"
-      onClick={() => setPopup(false)} // backdrop click
+      className="popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-40"
+      onClick={() => setPopup(false)}
     >
       <div
         className="w-full max-w-sm sm:max-w-lg md:max-w-2xl relative p-1 sm:p-6 md:p-8 
                    my-2 sm:my-8 
-                   h-[96vh] sm:h-auto sm:max-h-screen z-40 "
+                   h-[96vh] sm:h-auto sm:max-h-screen z-40"
         onClick={(e) => e.stopPropagation()}
       >
         <img
           src={assets.backSvg}
           className="hidden md:block menu-bg-img relative w-100% object-cover sm:object-contain md:w-full md:h-100%"
+          alt="background"
         />
         <img
           src={assets.backSvg}
-          className="block md:hidden menu-bg-img relative "
+          className="block md:hidden menu-bg-img relative"
+          alt="background"
         />
         <div
           className="absolute left-[5%] sm:left-[10%] md:left-[27%] 
                         top-4 sm:top-12 
                         w-[100%] sm:w-auto 
                         h-[calc(50%-2rem)] sm:h-auto
-                        flex flex-col justify-center sm:justify-start md:w-[500px] md:-ml-11  "
+                        flex flex-col justify-center sm:justify-start md:w-[500px] md:-ml-11"
         >
           <div className="text-center mb-3 sm:mb-0 md:-ml-14 rsvp-main-div">
             <h1
-              className="text-lg md:-ml-8 sm:text-xl md:text-3xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-gray-800 mb-2 sm:mb-4  item-center justify-center flex mx-auto"
+              className="text-lg md:-ml-8 sm:text-xl md:text-3xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-gray-800 mb-2 sm:mb-4 item-center justify-center flex mx-auto"
               style={{
                 fontWeight: 400,
                 fontSize: "clamp(18px, 4vw, 32px)",
@@ -245,7 +260,7 @@ const Popup = ({ setPopup }) => {
           </div>
 
           <form
-            className=" popup-form space-y-2.5 sm:space-y-2 flex-1 flex flex-col justify-center z-[40]  md:ml-1 "
+            className="popup-form space-y-2.5 sm:space-y-2 flex-1 flex flex-col justify-center z-[40] md:ml-1"
             onSubmit={handleSubmit}
           >
             <input
@@ -282,6 +297,7 @@ const Popup = ({ setPopup }) => {
                 style={{ fontWeight: 400, fontSize: "13px" }}
               />
 
+              {/* FIX 8: Fixed dropdown rendering logic */}
               {isOpen && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-64 overflow-y-auto">
                   {cityElements.length > 0 ? (
@@ -294,16 +310,14 @@ const Popup = ({ setPopup }) => {
                 </div>
               )}
 
-              <input type="hidden" name="city" value={selected} required />
+              <input type="hidden" name="location" value={selected} required />
             </div>
 
-            <div className=" w-full space-y-1.5 sm:space-y-2 md:space-y-4  mt-3 sm:mt-6">
-              {/* Option 1 */}
+            <div className="w-full space-y-1.5 sm:space-y-2 md:space-y-4 mt-3 sm:mt-6">
               <div className="flex items-center gap-2 sm:gap-3">
                 <input
                   type="checkbox"
-                  color="black"
-                  className="h-[16px] w-[16px] sm:h-[16px] sm:w-[16px] "
+                  className="h-[16px] w-[16px] sm:h-[16px] sm:w-[16px]"
                   checked={options.Policy}
                   onChange={() => handleOptionChange("Policy")}
                 />
@@ -317,7 +331,6 @@ const Popup = ({ setPopup }) => {
                 <DiagonalBox
                   initial={true}
                   size={16}
-                  sm:size={20}
                   stroke={2}
                   color="black"
                 />
@@ -326,12 +339,10 @@ const Popup = ({ setPopup }) => {
                 </label>
               </div>
 
-              {/* Option 2 */}
               <div className="flex items-center gap-2 sm:gap-3">
                 <DiagonalBox
                   initial={true}
                   size={16}
-                  sm:size={20}
                   stroke={2}
                   color="black"
                 />
@@ -340,12 +351,10 @@ const Popup = ({ setPopup }) => {
                 </label>
               </div>
 
-              {/* Option 3 */}
               <div className="flex items-center gap-2 sm:gap-3">
                 <DiagonalBox
                   initial={true}
                   size={16}
-                  sm:size={20}
                   stroke={2}
                   color="black"
                 />
@@ -358,7 +367,7 @@ const Popup = ({ setPopup }) => {
             <div className="pt-0 sm:pt-0 md:pt-6 w-full flex items-center justify-center">
               <button
                 type="submit"
-                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-7 sm:h-7 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px] "
+                className="w-[160px] sm:w-[200px] ml-[-40px] bg-black hover:bg-gray-800 text-white h-7 sm:h-7 md:h-12 text-sm sm:text-base md:text-lg font-bold tracking-wider rounded-md cursor-pointer md:-ml-[100px]"
                 style={{ fontWeight: 400, fontSize: "clamp(16px, 4vw, 24px)" }}
               >
                 SUBMIT

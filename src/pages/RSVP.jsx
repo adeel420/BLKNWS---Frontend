@@ -104,7 +104,7 @@ const RSVP = () => {
           {/* aapka purana section code yahan */}
 
           {/* CursorText sirf is section ke andar visible hoga */}
-          {popup && <CursorText isMuted={isMuted} sectionRef={sectionRef} />}
+          {!popup && <CursorText isMuted={isMuted} sectionRef={sectionRef} />}
         </div>
       </div>
     </div>
