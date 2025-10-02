@@ -4,14 +4,16 @@ import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { useState } from "react";
 import Popup from "./popup/Popup";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const [popup, setPopup] = useState(false);
+  const navigate = useNavigate();
   return (
     <footer className="bg-black text-white flex flex-col items-center justify-center gap-5 sm:gap-6 py-12 sm:py-16 px-4">
       <div className="flex flex-row items-center gap-8 text-[11px] sm:text-sm">
         <button
-          onClick={() => setPopup(true)}
+          onClick={() => navigate("/rsvp")}
           className="px-1 flex gap-2 md:gap-4 items-center justify-center sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 "
         >
           <span>R</span>
