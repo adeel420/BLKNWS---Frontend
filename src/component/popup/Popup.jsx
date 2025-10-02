@@ -1,7 +1,107 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { assets } from "../../assets/assets";
 import DiagonalBox from "../DiagonalBox";
+
+const allCities = [
+  { city: "Atlanta, GA", group: "United States" },
+  { city: "Austin, TX", group: "United States" },
+  { city: "Boston, MA", group: "United States" },
+  { city: "Chicago, IL", group: "United States" },
+  { city: "Dallas, TX", group: "United States" },
+  { city: "Denver, CO", group: "United States" },
+  { city: "Detroit, MI", group: "United States" },
+  { city: "Honolulu, HI", group: "United States" },
+  { city: "Houston, TX", group: "United States" },
+  { city: "Las Vegas, NV", group: "United States" },
+  { city: "Los Angeles, CA", group: "United States" },
+  { city: "Miami, FL", group: "United States" },
+  { city: "Minneapolis, MN", group: "United States" },
+  { city: "Nashville, TN", group: "United States" },
+  { city: "New Orleans, LA", group: "United States" },
+  { city: "New York, NY", group: "United States" },
+  { city: "Orlando, FL", group: "United States" },
+  { city: "Philadelphia, PA", group: "United States" },
+  { city: "Phoenix, AZ", group: "United States" },
+  { city: "Portland, OR", group: "United States" },
+  { city: "San Diego, CA", group: "United States" },
+  { city: "San Francisco, CA", group: "United States" },
+  { city: "Seattle, WA", group: "United States" },
+  { city: "Washington, DC", group: "United States" },
+  { city: "Toronto, ON", group: "Canada" },
+  { city: "Vancouver, BC", group: "Canada" },
+  { city: "Montreal, QC", group: "Canada" },
+  { city: "Calgary, AB", group: "Canada" },
+  { city: "Ottawa, ON", group: "Canada" },
+  { city: "Edmonton, AB", group: "Canada" },
+  { city: "Winnipeg, MB", group: "Canada" },
+  { city: "Quebec City, QC", group: "Canada" },
+  { city: "Hamilton, ON", group: "Canada" },
+  { city: "Kitchener, ON", group: "Canada" },
+  { city: "Halifax, NS", group: "Canada" },
+  { city: "Victoria, BC", group: "Canada" },
+  { city: "Belfast", group: "United Kingdom" },
+  { city: "Birmingham", group: "United Kingdom" },
+  { city: "Brighton", group: "United Kingdom" },
+  { city: "Bristol", group: "United Kingdom" },
+  { city: "Cambridge", group: "United Kingdom" },
+  { city: "Cardiff", group: "United Kingdom" },
+  { city: "Edinburgh", group: "United Kingdom" },
+  { city: "Glasgow", group: "United Kingdom" },
+  { city: "Leeds", group: "United Kingdom" },
+  { city: "Leicester", group: "United Kingdom" },
+  { city: "Liverpool", group: "United Kingdom" },
+  { city: "London", group: "United Kingdom" },
+  { city: "Manchester", group: "United Kingdom" },
+  { city: "Newcastle upon Tyne", group: "United Kingdom" },
+  { city: "Nottingham", group: "United Kingdom" },
+  { city: "Oxford", group: "United Kingdom" },
+  { city: "Sheffield", group: "United Kingdom" },
+  { city: "Southampton", group: "United Kingdom" },
+  { city: "Lagos, Nigeria", group: "Africa" },
+  { city: "Abuja, Nigeria", group: "Africa" },
+  { city: "Kano, Nigeria", group: "Africa" },
+  { city: "Port Harcourt, Nigeria", group: "Africa" },
+  { city: "Ibadan, Nigeria", group: "Africa" },
+  { city: "Nairobi, Kenya", group: "Africa" },
+  { city: "Mombasa, Kenya", group: "Africa" },
+  { city: "Kisumu, Kenya", group: "Africa" },
+  { city: "Cairo, Egypt", group: "Africa" },
+  { city: "Alexandria, Egypt", group: "Africa" },
+  { city: "Giza, Egypt", group: "Africa" },
+  { city: "Luxor, Egypt", group: "Africa" },
+  { city: "Aswan, Egypt", group: "Africa" },
+  { city: "Johannesburg, South Africa", group: "Africa" },
+  { city: "Cape Town, South Africa", group: "Africa" },
+  { city: "Durban, South Africa", group: "Africa" },
+  { city: "Pretoria, South Africa", group: "Africa" },
+  { city: "Port Elizabeth, South Africa", group: "Africa" },
+  { city: "Accra, Ghana", group: "Africa" },
+  { city: "Kumasi, Ghana", group: "Africa" },
+  { city: "Tamale, Ghana", group: "Africa" },
+  { city: "Addis Ababa, Ethiopia", group: "Africa" },
+  { city: "Dire Dawa, Ethiopia", group: "Africa" },
+  { city: "Mekelle, Ethiopia", group: "Africa" },
+  { city: "Casablanca, Morocco", group: "Africa" },
+  { city: "Marrakech, Morocco", group: "Africa" },
+  { city: "Rabat, Morocco", group: "Africa" },
+  { city: "Fes, Morocco", group: "Africa" },
+  { city: "Dar es Salaam, Tanzania", group: "Africa" },
+  { city: "Dodoma, Tanzania", group: "Africa" },
+  { city: "Arusha, Tanzania", group: "Africa" },
+  { city: "Dakar, Senegal", group: "Africa" },
+  { city: "Saint-Louis, Senegal", group: "Africa" },
+  { city: "Kampala, Uganda", group: "Africa" },
+  { city: "Entebbe, Uganda", group: "Africa" },
+  { city: "Abidjan, Ivory Coast", group: "Africa" },
+  { city: "Yamoussoukro, Ivory Coast", group: "Africa" },
+  { city: "Other - Mainland Europe", group: "Other" },
+  { city: "Other - Asia", group: "Other" },
+  { city: "Other - Australia/Oceania", group: "Other" },
+  { city: "Other - South America", group: "Other" },
+  { city: "Other - Caribbean", group: "Other" },
+  { city: "Other - Middle East", group: "Other" },
+];
 
 const Popup = ({ setPopup }) => {
   // State for checkboxes
@@ -11,6 +111,62 @@ const Popup = ({ setPopup }) => {
     Updates: true,
     Policy: false,
   });
+
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filteredCities = search
+    ? allCities.filter((item) =>
+        item.city.toLowerCase().includes(search.toLowerCase())
+      )
+    : allCities;
+
+  const handleSelect = (city) => {
+    setSelected(city);
+    setSearch("");
+    setIsOpen(false);
+  };
+
+  let currentGroup = "";
+  const cityElements = [];
+
+  for (let i = 0; i < filteredCities.length; i++) {
+    const item = filteredCities[i];
+
+    if (item.group !== currentGroup) {
+      currentGroup = item.group;
+      cityElements.push(
+        <div
+          key={`group-${i}`}
+          className="px-3 py-2 text-xs font-semibold text-gray-500 bg-gray-50"
+        >
+          {item.group}
+        </div>
+      );
+    }
+
+    cityElements.push(
+      <div
+        key={`city-${i}`}
+        onClick={() => handleSelect(item.city)}
+        className="px-3 sm:px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 text-center"
+      >
+        {item.city}
+      </div>
+    );
+  }
 
   const handleOptionChange = (name) => {
     setOptions((prev) => ({ ...prev, [name]: !prev[name] }));
@@ -114,104 +270,38 @@ const Popup = ({ setPopup }) => {
               className="w-[90%] sm:w-[88%] h-10 sm:h-11 md:h-11 md:w-[400px] placeholder:text-[13px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular placeholder:font-medium placeholder:text-[black] focus:outline-none focus:ring-2 focus:ring-gray-400"
               required
             />
-            <select
-              name="city"
-              defaultValue=""
-              style={{ fontWeight: 400, fontSize: "13px" }}
-              className="sel w-[90%] sm:w-[38%] h-10 sm:h-11 md:h-11 md:w-[400px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer appearance-none"
-              required
+            <div
+              className="relative w-[90%] sm:w-[38%] md:w-[400px]"
+              ref={wrapperRef}
             >
-              <option value="" disabled>
-                YOUR CITY/COUNTRY
-              </option>
-              <optgroup label="United States">
-                <option>Atlanta, GA</option>
-                <option>Austin, TX</option>
-                <option>Boston, MA</option>
-                <option>Chicago, IL</option>
-                <option>Dallas, TX</option>
-                <option>Denver, CO</option>
-                <option>Detroit, MI</option>
-                <option>Honolulu, HI</option>
-                <option>Houston, TX</option>
-                <option>Las Vegas, NV</option>
-                <option>Los Angeles, CA</option>
-                <option>Miami, FL</option>
-                <option>Minneapolis, MN</option>
-                <option>Nashville, TN</option>
-                <option>New Orleans, LA</option>
-                <option>New York, NY</option>
-                <option>Orlando, FL</option>
-                <option>Philadelphia, PA</option>
-                <option>Phoenix, AZ</option>
-                <option>Portland, OR</option>
-                <option>San Diego, CA</option>
-                <option>San Francisco, CA</option>
-                <option>Seattle, WA</option>
-                <option>Washington, DC</option>
-              </optgroup>
+              <input
+                type="text"
+                value={search || selected}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setSelected("");
+                  setIsOpen(true);
+                }}
+                onFocus={() => setIsOpen(true)}
+                placeholder="YOUR CITY/COUNTRY"
+                className="w-full sm:w-[88%] h-10 sm:h-11 md:h-11 md:w-[400px] placeholder:text-[13px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular placeholder:font-medium placeholder:text-[black] focus:outline-none focus:ring-2 focus:ring-gray-400"
+                style={{ fontWeight: 400, fontSize: "13px" }}
+              />
 
-              <optgroup label="United Kingdom">
-                <option>Belfast</option>
-                <option>Birmingham</option>
-                <option>Brighton</option>
-                <option>Bristol</option>
-                <option>Cambridge</option>
-                <option>Cardiff</option>
-                <option>Edinburgh</option>
-                <option>Glasgow</option>
-                <option>Leeds</option>
-                <option>Leicester</option>
-                <option>Liverpool</option>
-                <option>London</option>
-                <option>Manchester</option>
-                <option>Newcastle upon Tyne</option>
-                <option>Nottingham</option>
-                <option>Oxford</option>
-                <option>Sheffield</option>
-                <option>Southampton</option>
-              </optgroup>
+              {isOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-64 overflow-y-auto">
+                  {cityElements.length > 0 ? (
+                    cityElements
+                  ) : (
+                    <div className="px-3 sm:px-4 py-2 text-sm text-gray-500 text-center">
+                      No cities found
+                    </div>
+                  )}
+                </div>
+              )}
 
-              <optgroup label="Africa">
-                <option>Lagos, Nigeria</option>
-                <option>Abuja, Nigeria</option>
-                <option>Kano, Nigeria</option>
-                <option>Port Harcourt, Nigeria</option>
-                <option>Ibadan, Nigeria</option>
-                <option>Nairobi, Kenya</option>
-                <option>Mombasa, Kenya</option>
-                <option>Kisumu, Kenya</option>
-                <option>Cairo, Egypt</option>
-                <option>Alexandria, Egypt</option>
-                <option>Giza, Egypt</option>
-                <option>Luxor, Egypt</option>
-                <option>Aswan, Egypt</option>
-                <option>Johannesburg, South Africa</option>
-                <option>Cape Town, South Africa</option>
-                <option>Durban, South Africa</option>
-                <option>Pretoria, South Africa</option>
-                <option>Port Elizabeth, South Africa</option>
-                <option>Accra, Ghana</option>
-                <option>Kumasi, Ghana</option>
-                <option>Tamale, Ghana</option>
-                <option>Addis Ababa, Ethiopia</option>
-                <option>Dire Dawa, Ethiopia</option>
-                <option>Mekelle, Ethiopia</option>
-                <option>Casablanca, Morocco</option>
-                <option>Marrakech, Morocco</option>
-                <option>Rabat, Morocco</option>
-                <option>Fes, Morocco</option>
-                <option>Dar es Salaam, Tanzania</option>
-                <option>Dodoma, Tanzania</option>
-                <option>Arusha, Tanzania</option>
-                <option>Dakar, Senegal</option>
-                <option>Saint-Louis, Senegal</option>
-                <option>Kampala, Uganda</option>
-                <option>Entebbe, Uganda</option>
-                <option>Abidjan, Ivory Coast</option>
-                <option>Yamoussoukro, Ivory Coast</option>
-              </optgroup>
-            </select>
+              <input type="hidden" name="city" value={selected} required />
+            </div>
 
             <div className=" w-full space-y-1.5 sm:space-y-2 md:space-y-4  mt-3 sm:mt-6">
               {/* Option 1 */}
