@@ -97,7 +97,60 @@ const RSVP = () => {
         </div>
 
         {/* Ticket Style Box */}
+        <div className="ticket-box absolute top-2 right-[-12px] sm:top-3 sm:right-0 md:top-5 md:right-[-30px] z-10">
+          {/* Ticket container */}
+          <div className="relative">
+            {/* Ticket background */}
+            <img
+              src={assets.ticket}
+              alt="ticket"
+              className="w-[220px] h-[70px] sm:w-[260px] sm:h-[85px] md:w-[380px] md:h-[110px]"
+            />
 
+            {/* Content overlay */}
+            <div className="absolute inset-0 flex ml-6 mt-[-6px] sm:mt-[-8px] sm:ml-7 md:ml-15 md:mt-1 lg:ml-15 justify-between items-start">
+              {/* Left Section */}
+              <div className="flex flex-col flex-1">
+                <div className="flex items-center gap-1 sm:gap-2 p-2 sm:p-3">
+                  <img
+                    src={assets.logo}
+                    alt="logo"
+                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
+                  />
+                  <div>
+                    <h1 className="text-sm sm:text-base md:text-lg font-bold flex items-center">
+                      BLKNWS
+                      <MdKeyboardArrowDown className="ml-1 text-xs sm:text-sm" />
+                    </h1>
+                    <p className="text-[8px] sm:text-[9px] md:text-[10px] font-bold">
+                      : TERMS & CONDITIONS
+                    </p>
+                  </div>
+                </div>
+
+                {/* Buttons */}
+                <div className="border-t flex flex-row items-center w-[85%] text-xs sm:text-sm">
+                  <button
+                    onClick={() => setPopup(true)}
+                    className="px-1 flex gap-2 md:gap-4 items-center justify-center sm:px-2 py-1.5 sm:py-2 border-r cursor-pointer transition text-center flex-1 "
+                  >
+                    <span>R</span>
+                    <span>S</span>
+                    <span>V</span>
+                    <span>P</span>
+                  </button>
+                  <a
+                    href="https://www.youtube.com/watch?v=bfSphlAyHLs&feature=youtu.be"
+                    target="_blank"
+                    className="px-1 ml-[0] md:ml-[-18px] sm:px-2 py-1.5 sm:py-2 cursor-pointer transition text-center flex-1 "
+                  >
+                    TEASER
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Popup */}
         <Popup setPopup={setPopup} />
         <div className="bg-black relative">

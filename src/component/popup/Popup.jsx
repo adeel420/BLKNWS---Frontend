@@ -239,11 +239,16 @@ const Popup = ({ setPopup }) => {
   };
 
   const handleCloseClick = () => {
+    if (location.pathname === "/rsvp") {
+      navigate("/");
+      setPopup(false);
+      return;
+    }
     if (isFormEmpty()) {
       setPopup(false);
-    } else {
-      toast.error("Please complete or clear the form before closing");
+      return;
     }
+    toast.error("Please complete or clear the form before closing");
   };
 
   return (
