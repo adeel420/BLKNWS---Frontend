@@ -3,6 +3,7 @@ import { assets } from "../assets/assets";
 import { MdKeyboardArrowDown, MdVolumeOff, MdVolumeUp } from "react-icons/md";
 import CursorText from "./CursorText";
 import { useNavigate } from "react-router-dom";
+import Popup from "./popup/Popup";
 
 const First_Section = () => {
   const [audioStarted, setAudioStarted] = useState(false);
@@ -10,6 +11,7 @@ const First_Section = () => {
   const [isMuted, setIsMuted] = useState(false);
   const sectionRef = useRef(null);
   const [isHoveringBuffer, setIsHoveringBuffer] = useState(false);
+  const [popup, setPopup] = useState(false);
 
   const audioRef = useRef(null);
 
@@ -132,7 +134,7 @@ const First_Section = () => {
                 {/* Buttons */}
                 <div className="border-t flex flex-row items-center w-[85%] text-xs sm:text-sm">
                   <button
-                    onClick={() => navigate("/rsvp")}
+                    onClick={() => setPopup(true)}
                     className="px-1 flex gap-2 md:gap-4 items-center justify-center sm:px-2 py-1.5 sm:py-2 border-r cursor-pointer transition text-center flex-1 "
                   >
                     <span>R</span>
@@ -154,9 +156,9 @@ const First_Section = () => {
         </div>
 
         {/* Popup */}
-
+        {popup && <Popup setPopup={setPopup} />}
         <div className="bg-black relative">
-          <CursorText isMuted={isMuted} sectionRef={sectionRef} />
+          {!popup && <CursorText isMuted={isMuted} sectionRef={sectionRef} />}
         </div>
       </div>
     </div>
