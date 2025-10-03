@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { assets } from "../../assets/assets";
 import DiagonalBox from "../DiagonalBox";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const allCities = [
   { city: "Atlanta, GA", group: "United States" },
@@ -114,7 +115,10 @@ const Popup = ({ setPopup }) => {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "" });
   const wrapperRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -126,14 +130,12 @@ const Popup = ({ setPopup }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // FIX 1: Changed item.Location to item.city
   const filteredCities = search
     ? allCities.filter((item) =>
         item.city.toLowerCase().includes(search.toLowerCase())
       )
     : allCities;
 
-  // FIX 2: Changed Location to city parameter
   const handleSelect = (city) => {
     setSelected(city);
     setSearch("");
@@ -141,7 +143,7 @@ const Popup = ({ setPopup }) => {
   };
 
   let currentGroup = "";
-  const cityElements = []; // FIX 3: Renamed from LocationElements to cityElements
+  const cityElements = [];
 
   for (let i = 0; i < filteredCities.length; i++) {
     const item = filteredCities[i];
@@ -158,7 +160,6 @@ const Popup = ({ setPopup }) => {
       );
     }
 
-    // FIX 4: Changed item.Location to item.city
     cityElements.push(
       <div
         key={`city-${i}`}
@@ -174,19 +175,35 @@ const Popup = ({ setPopup }) => {
     setOptions((prev) => ({ ...prev, [name]: !prev[name] }));
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const isFormEmpty = () => {
+    return !formData.name.trim() && !formData.email.trim() && !selected;
+  };
+
+  const handleBackdropClick = () => {
+    if (isFormEmpty()) {
+      setPopup(false);
+    } else {
+      toast.error("Please complete or clear the form before closing");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // FIX 5: Validate that a city is selected
     if (!selected) {
       toast.error("Please select a city/location");
       return;
     }
 
-    const formData = {
-      Name: e.target.name.value,
-      Email: e.target.email.value,
-      Location: selected, // FIX 6: Use selected state value
+    const submitData = {
+      Name: formData.name,
+      Email: formData.email,
+      Location: selected,
       ...options,
     };
 
@@ -196,21 +213,24 @@ const Popup = ({ setPopup }) => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(submitData),
         }
       );
 
       if (!res.ok) throw new Error("Submission failed");
 
       toast.success("Form submitted successfully!");
-      e.target.reset();
+      if (location.pathname === "/rsvp") {
+        navigate("/");
+      }
+      setFormData({ name: "", email: "" });
       setOptions({
         EarlyAccess: true,
         FirstInvites: true,
         Updates: true,
         Policy: false,
       });
-      setSelected(""); // FIX 7: Reset selected city
+      setSelected("");
       setPopup(false);
     } catch (err) {
       console.error(err);
@@ -218,10 +238,18 @@ const Popup = ({ setPopup }) => {
     }
   };
 
+  const handleCloseClick = () => {
+    if (isFormEmpty()) {
+      setPopup(false);
+    } else {
+      toast.error("Please complete or clear the form before closing");
+    }
+  };
+
   return (
     <div
       className="popup-main fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-40"
-      onClick={() => setPopup(false)}
+      onClick={handleBackdropClick}
     >
       <div
         className="w-full max-w-sm sm:max-w-lg md:max-w-2xl relative p-1 sm:p-6 md:p-8 
@@ -257,6 +285,12 @@ const Popup = ({ setPopup }) => {
             >
               R S V P
             </h1>
+            <button
+              className="absolute top-5 right-15 block md:hidden "
+              onClick={handleCloseClick}
+            >
+              x
+            </button>
           </div>
 
           <form
@@ -266,6 +300,8 @@ const Popup = ({ setPopup }) => {
             <input
               type="text"
               name="name"
+              value={formData.name}
+              onChange={handleInputChange}
               placeholder="YOUR NAME"
               style={{ fontWeight: 400, fontSize: "16px" }}
               className="w-[90%] sm:w-[88%] h-10 sm:h-11 md:h-11 md:w-[400px] placeholder:text-[13px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular placeholder:text-[black] placeholder:font-medium focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -274,6 +310,8 @@ const Popup = ({ setPopup }) => {
             <input
               type="email"
               name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               placeholder="YOUR EMAIL"
               style={{ fontWeight: 400, fontSize: "16px" }}
               className="w-[90%] sm:w-[88%] h-10 sm:h-11 md:h-11 md:w-[400px] placeholder:text-[13px] bg-white border border-gray-300 rounded-md px-3 sm:px-4 text-center text-sm sm:text-base font-regular placeholder:font-medium placeholder:text-[black] focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -297,7 +335,6 @@ const Popup = ({ setPopup }) => {
                 style={{ fontWeight: 400, fontSize: "13px" }}
               />
 
-              {/* FIX 8: Fixed dropdown rendering logic */}
               {isOpen && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-64 overflow-y-auto">
                   {cityElements.length > 0 ? (
