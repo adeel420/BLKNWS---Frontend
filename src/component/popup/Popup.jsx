@@ -239,16 +239,15 @@ const Popup = ({ setPopup }) => {
   };
 
   const handleCloseClick = () => {
+    if (!isFormEmpty()) {
+      toast.error("Please complete or clear the form before closing");
+      return;
+    }
+
     if (location.pathname === "/rsvp") {
       navigate("/");
-      setPopup(false);
-      return;
     }
-    if (isFormEmpty()) {
-      setPopup(false);
-      return;
-    }
-    toast.error("Please complete or clear the form before closing");
+    setPopup(false);
   };
 
   return (
@@ -296,6 +295,14 @@ const Popup = ({ setPopup }) => {
             >
               x
             </button>
+            {location.pathname === "/rsvp" && (
+              <button
+                className="absolute top-[5px] right-20 cursor-pointer hidden md:block"
+                onClick={handleCloseClick}
+              >
+                x
+              </button>
+            )}
           </div>
 
           <form
