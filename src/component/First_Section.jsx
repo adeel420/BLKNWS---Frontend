@@ -12,6 +12,8 @@ const First_Section = () => {
   const sectionRef = useRef(null);
   const [isHoveringBuffer, setIsHoveringBuffer] = useState(false);
   const [popup, setPopup] = useState(false);
+  const [showCookies, setShowCookies] = useState(true);
+  const [customize, setCustomize] = useState(false);
 
   const audioRef = useRef(null);
 
@@ -36,9 +38,22 @@ const First_Section = () => {
     }
   };
 
+  // 🧁 Cookie popup handlers (no localStorage, always show on reload)
+  const handleAcceptAll = () => {
+    setShowCookies(false);
+  };
+
+  const handleDeclineAll = () => {
+    setShowCookies(false);
+  };
+
+  const handleEssentialOnly = () => {
+    setShowCookies(false);
+  };
+
   return (
     <div
-      className="bg-[black] "
+      className="bg-[black]"
       style={{ zIndex: "-111111111111111111111111111111111111111111111111" }}
       onClick={handleStartAudio}
     >
@@ -70,7 +85,6 @@ const First_Section = () => {
             onMouseLeave={() => setIsHoveringBuffer(false)}
             onClick={handleToggleAudio}
           >
-            {/* Buffer Image */}
             <img
               src={assets.buffer}
               alt="music buffer"
@@ -78,8 +92,6 @@ const First_Section = () => {
                 isHoveringBuffer ? "opacity-0" : "opacity-100"
               }`}
             />
-
-            {/* Hover Icon Overlay */}
             {isHoveringBuffer && (
               <div className="absolute inset-0 flex items-center justify-center">
                 {isMuted ? (
@@ -99,20 +111,15 @@ const First_Section = () => {
           </div>
         </div>
 
-        {/* Ticket Style Box */}
+        {/* Ticket Box */}
         <div className="ticket-box absolute top-2 right-[-12px] sm:top-3 sm:right-0 md:top-5 md:right-[-30px] z-10">
-          {/* Ticket container */}
           <div className="relative">
-            {/* Ticket background */}
             <img
               src={assets.ticket}
               alt="ticket"
               className="w-[220px] h-[70px] sm:w-[260px] sm:h-[85px] md:w-[380px] md:h-[110px]"
             />
-
-            {/* Content overlay */}
             <div className="absolute inset-0 flex ml-6 mt-[-6px] sm:mt-[-8px] sm:ml-7 md:ml-15 md:mt-1 lg:ml-15 justify-between items-start">
-              {/* Left Section */}
               <div className="flex flex-col flex-1">
                 <div className="flex items-center gap-1 sm:gap-2 p-2 sm:p-3">
                   <img
@@ -131,7 +138,6 @@ const First_Section = () => {
                   </div>
                 </div>
 
-                {/* Buttons */}
                 <div className="border-t flex flex-row items-center w-[85%] text-xs sm:text-sm">
                   <button
                     onClick={() => setPopup(true)}
@@ -160,6 +166,56 @@ const First_Section = () => {
         <div className="bg-black relative">
           {!popup && <CursorText isMuted={isMuted} sectionRef={sectionRef} />}
         </div>
+
+        {/* 🍪 Cookies Consent Popup */}
+        {showCookies && (
+          <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-[#111] text-white p-5 rounded-xl shadow-lg max-w-lg w-[90%] border border-gray-700 z-[99999]">
+            <h2 className="text-lg font-semibold mb-2">
+              We use cookies to enhance your experience
+            </h2>
+            <p className="text-sm text-gray-300 mb-4">
+              We use cookies and similar technologies to help personalize
+              content, provide social media features, and analyze our traffic.
+              We also share information about your use of our site with our
+              social media, advertising, and analytics partners.
+            </p>
+
+            <div className="flex flex-wrap gap-2 justify-start md:justify-end">
+              <button
+                onClick={handleEssentialOnly}
+                className="bg-gray-800 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded-md text-sm"
+              >
+                Essential Only
+              </button>
+              <button
+                onClick={() => setCustomize(!customize)}
+                className="bg-gray-800 hover:bg-gray-700 cursor-pointer px-3 py-2 rounded-md text-sm"
+              >
+                Customize
+              </button>
+              <button
+                onClick={handleDeclineAll}
+                className="bg-gray-800 hover:bg-gray-700 px-6 md:px-3 py-2 cursor-pointer rounded-md text-sm"
+              >
+                Decline All
+              </button>
+              <button
+                onClick={handleAcceptAll}
+                className="bg-[#032592] hover:bg-[#031a60] cursor-pointer px-3 py-2 rounded-md text-sm"
+              >
+                Accept All
+              </button>
+            </div>
+
+            {customize && (
+              <div className="mt-3 text-xs text-gray-400">
+                <p>
+                  You can customize cookie preferences in your browser settings.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
