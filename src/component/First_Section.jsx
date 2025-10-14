@@ -123,7 +123,7 @@ const First_Section = () => {
               <div className="flex flex-col flex-1">
                 <div className="flex items-center gap-1 sm:gap-2 p-2 sm:p-3">
                   <img
-                    src={assets.logo}
+                    src={"favicon.png"}
                     alt="logo"
                     className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
                   />
